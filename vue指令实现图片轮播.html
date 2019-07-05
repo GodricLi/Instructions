@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>vue指令实现图片轮播</title>
+    <style type="text/css">
+        .active{
+            background-color: red;
+        }
+        ul{
+            width: 400px;
+            height: 400px;
+            list-style: none;
+            overflow: hidden;
+        }
+        ul li{
+            float: left;
+            width: 30px;
+            height: 30px;
+            line-height: 40px;
+            background-color: green;
+            color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="slider">
+    <img :src="currentImgSrc" alt="">
+    <ul>
+        <li v-for="(item,index) in imgArr" v-bind:class="{active:currentIndex==index}"
+            v-on:click="clickHandler(index)">
+            {{index+1}}
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript" src="../vuestudy/node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+
+    var imgArr = [
+        {id: 1, imgSrc: "./imgs/img1.jpg"},
+        {id: 2, imgSrc: "./imgs/img2.jpg"},
+        {id: 3, imgSrc: "./imgs/img3.jpg"},
+    ];
+
+    new Vue({
+        el: '#slider',
+        data() {
+            return {
+                imgArr: imgArr,
+                currentImgSrc: "./imgs/img1.jpg",
+                currentIndex: 0,
+            }
+        },
+
+        // vue中方法必须写在methods中
+        methods:{
+            clickHandler(index){
+                this.currentImgSrc = this.imgArr[index].imgSrc;
+                this.currentIndex = index
+            },
+        },
+
+        // template: ``,
+    })
+    ;
+</script>
+</body>
+
+</html>

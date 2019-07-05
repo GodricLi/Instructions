@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>V-model的双向绑定</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="msg" name="">
+    <p>{{msg}}
+    <br>
+    <input type="text" name="" :value="msg2" @input="changeHandler">
+    <p>{{msg2}}
+
+</div>
+
+<script type="text/javascript" src="../vuestudy/node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el: '#app',
+        data: {
+            msg: "hello vue",
+            msg2: "hello2",
+
+        },
+        methods: {
+            changeHandler(event) {
+                this.msg2 = event.target.value
+            }
+        }
+    });
+</script>
+</body>
+</html>
